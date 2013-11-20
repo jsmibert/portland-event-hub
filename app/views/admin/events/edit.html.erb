@@ -1,0 +1,40 @@
+
+<h2>Edit Event</h2>
+
+<%= form_for :event, :html => {:multipart => true}, url: admin_events_path do |f| %>
+ 
+
+
+  <div class="form-group">
+    <label for="title">Title</label>
+    <%= f.text_field :title, { :class => "form-control", :placeholder => "Event Title" } %>
+  </div>
+  <div class="form-group">
+    <label for="brief_description">Brief Description</label>
+    <%= f.text_field :brief_description, { :class => "form-control", :placeholder => "Brief Description" } %>
+  </div>
+  <div class="form-group">
+    <label for="image">Event Image</label>
+    <%= image_tag(@event.image_url) if @event.image? %>
+    <%= f.file_field :image %>
+    <%= f.hidden_field :image_cache %>   
+  </div>
+  <button type="submit" class="btn btn-default btn-primary">Submit</button>
+
+
+
+<% if @event.errors.any? %>
+  <div id="errorExplanation">
+    <h2><%= pluralize(@event.errors.count, "error") %> prohibited
+      this event from being saved:</h2>
+    <ul>
+    <% @event.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+    <% end %>
+    </ul>
+  </div>
+  <% end %>
+
+
+	
+<% end %>

@@ -1,0 +1,67 @@
+<% if data = session["devise.facebook_data"] %>
+<div class="container">
+  <div class="row">
+    <div class="col-md-5 col-md-offset-3">
+      <div class="well well-sm">
+        <div class="media">
+          <a class="thumbnail pull-left" href="#">
+            <img class="media-object" src="<%= data[:info][:image]%>">
+          </a>
+          <div class="media-body">
+            <h4 class="media-heading"><%= @user.name %></h4>
+            <p><span class="label label-info">Facebook Login</span></p>
+
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+  <div class="row">
+    <div class="col-md-5 col-md-offset-3">
+      <p>Thanks for signing in with Facebook. You are almost done.</p>
+    </div>
+  </div>
+</div>
+<%end%>
+
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-5 col-md-offset-3">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h3 class="panel-title">Almost done</h3>
+        </div>
+        <div class="panel-body">
+          <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name), :role => "form") do |f| %>
+              <fieldset>
+                <%= devise_error_messages! %>
+                <div class="form-group">
+                  <label class="control-label">Email</label>
+                  <div>
+                  <% if data = session["devise.facebook_data"] %>
+                  <%= f.hidden_field :email %>
+                      <p class="form-control-static"><%= @user.email %></p>
+                  <% else %>
+                  <%= f.email_field :email, :autofocus => true, :class => "form-control", :placeholder => "E-mail" %>
+                  <% end %>
+                  </div>
+              </div>
+                <div class="form-group">
+                  <%= f.password_field :password, :class => "form-control", :placeholder => "Password" %>
+                </div>
+                <div class="form-group">
+                  <%= f.password_field :password_confirmation, :class => "form-control", :placeholder => "Confirm password" %>
+                </div>
+                <%= f.submit "Sign Up", :class => "btn btn-lg btn-success btn-block" %>
+                <% if not session["devise.facebook_data"] %>
+                    <a href="<%= url_for user_omniauth_authorize_path(:facebook) %>" class="btn btn-lg btn-facebook btn-block"><i class="icon-facebook"></i> | Connect with Facebook</a>
+                <% end %>
+              </fieldset>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
