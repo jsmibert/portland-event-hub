@@ -1,25 +1,37 @@
-<h1>Listing categories</h1>
-
-<table class="table table-bordered table-responsive table-striped">
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @categories.each do |category| %>
-      <tr>
-        <td><%= category.name %></td>
-        <td>
-          <%= link_to 'Edit', edit_admin_category_path(category), :class => "btn btn-primary btn-sm" %>
-          <%= link_to 'Destroy', [:admin, category], method: :delete, data: { confirm: 'Are you sure?' }, :class => "btn btn-danger btn-sm" %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
+<div class="row">
+  <div class="col-lg-8 col-lg-offset-2">
+    <h3>
+      All Categories
+      <%=l ink_to 'New Category', new_admin_category_path, :class=>
+        "btn btn-primary pull-right" %>
+    </h3>
+    <table class="table table-responsive table-striped">
+      <thead>
+        <tr>
+          <th>
+            Name
+          </th>
+          <th>
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @categories.each do |category| %>
+          <tr>
+            <td>
+              <%=c ategory.name %>
+            </td>
+            <td>
+              <%=l ink_to 'Edit', edit_admin_category_path(category), :class=>
+                "btn btn-primary btn-sm" %>
+                <%=l ink_to 'Destroy', [:admin, category], method: :delete, data: { confirm:
+                'Are you sure?' }, :class=>
+                  "btn btn-danger btn-sm" %>
+            </td>
+          </tr>
+          <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>
 <br>
-
-<%= link_to 'New Category', new_admin_category_path %>

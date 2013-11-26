@@ -1,6 +1,6 @@
-<h1>Editing category</h1>
-
-<%= render 'form' %>
-
-<%= link_to 'Show', [:admin, @category] %> |
-<%= link_to 'Back', admin_categories_path %>
+<div class="row">
+  <div class="col-lg-8 col-lg-offset-2">
+    <h3>Edit Category <%=l ink_to 'All Categories', admin_categories_path, :class=> "btn btn-primary pull-right" %></h3>
+    <hr/>
+    <%=r ender 'form' %>
+  </div>

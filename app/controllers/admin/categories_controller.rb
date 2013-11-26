@@ -29,6 +29,7 @@ class Admin::CategoriesController < ApplicationController
 
     respond_to do |format|
       if @category.save
+        @categories = Category.all
         format.html { render action: 'index', notice: 'Category was successfully created.' }
         format.json { render action: 'show', status: :created, location: @category }
       else
@@ -43,7 +44,8 @@ class Admin::CategoriesController < ApplicationController
   def update
     respond_to do |format|
       if @category.update(category_params)
-        format.html { redirect_to [:admin, @category], notice: 'Category was successfully updated.' }
+        @categories = Category.all
+        format.html { render action: 'index', notice: 'Category was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: 'edit' }
