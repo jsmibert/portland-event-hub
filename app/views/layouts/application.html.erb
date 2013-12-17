@@ -9,6 +9,8 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
+<%= yield :role_sidebar%>
+<%== yield :role_main%>
 <div class="container">
   <nav class="navbar navbar-default navbar-inverse" role="navigation">
     <!-- Brand and toggle get grouped for better mobile display -->
@@ -25,9 +27,9 @@
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse navbar-ex1-collapse">
       <ul class="nav navbar-nav">
-        <% if can? :view, User %>
+        
         <li><%= nav_link "Users", admin_users_path %></li>
-        <% end %>
+        
         <li><%= nav_link "Events", admin_events_path %></li>
         <li><%= nav_link "Categories", admin_categories_path %></li>
       </ul>

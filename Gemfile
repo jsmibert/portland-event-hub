@@ -45,7 +45,7 @@ end
 
 gem 'certified'
 
-gem 'cancan'
+gem 'the_role', '~> 2.3'
 gem 'devise'
 gem 'omniauth'
 gem 'omniauth-facebook'
@@ -68,8 +68,9 @@ gem 'font-awesome-less'
 
 #gem 'debugger', group: [:development, :test]
 
+gem 'better_errors'
+
 group :development do
-  gem "better_errors"
-  gem "binding_of_caller"
+  gem 'binding_of_caller'
   gem 'meta_request'
 end
